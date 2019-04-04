@@ -1,6 +1,6 @@
 
 <template>
-  <v-footer>
+  <v-footer height="auto">
     <v-card flat tile class="blue-grey lighten-1 white--text text-xs-center">
       <v-card-text>
         <v-btn v-for="icon in icons" :key="icon" class="mx-3 white--text" icon>

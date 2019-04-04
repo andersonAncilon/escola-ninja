@@ -2,6 +2,7 @@
   <div class="escola-ninja-container">
     <v-app>
       <TheNavBar/>
+      <router-view></router-view>
     </v-app>
     <TheFooter/>
   </div>
@@ -24,8 +25,15 @@ export default {
 </script>
 
 <style>
+html, body {
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+}
+
 .escola-ninja-container {
   padding: 0;
-  height: 100%;
+  height: 100vh;
+  width: 100%;
 }
 </style>
