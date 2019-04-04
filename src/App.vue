@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="escola-ninja-container">
+    <v-app>
+      <TheNavBar/>
+    </v-app>
+    <TheFooter/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TheNavBar from "./components/container/TheNavBar";
+import TheFooter from "./components/container/TheFooter";
 
 export default {
-  name: 'app',
+  name: "App",
   components: {
-    HelloWorld
+    TheNavBar,
+    TheFooter
+  },
+  data() {
+    return {};
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.escola-ninja-container {
+  padding: 0;
+  height: 100%;
 }
 </style>
