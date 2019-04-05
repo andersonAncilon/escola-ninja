@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import TheNavBar from "./components/container/TheNavBar";
-import TheFooter from "./components/container/TheFooter";
+import TheNavBar from './components/container/TheNavBar';
+import TheFooter from './components/container/TheFooter';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     TheNavBar,
-    TheFooter
+    TheFooter,
   },
   data() {
     return {};
