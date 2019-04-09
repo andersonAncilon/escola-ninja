@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import MyCard from "../components/base/MyCard";
-import MyCenteredContainer from "../components/base/MyCenteredContainer";
+import MyCard from '../components/base/MyCard';
+import MyCenteredContainer from '../components/base/MyCenteredContainer';
 
 export default {
   components: {

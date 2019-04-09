@@ -1,13 +1,9 @@
 import Axios from 'axios';
 
 var Api = Axios.create({
-    baseURL: ''
-})
+  baseURL: 'https://l3onix-splinter.herokuapp.com/'
+});
 
-export const Get = (route) => (
-    Api.get(route)
-)
+export const Get = route => Api.get(route);
 
-export const Post = (route, data) => (
-    Api.post(route, data)
-)
+export const Post = (route, data) => Api.post(route, data);
