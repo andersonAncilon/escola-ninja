@@ -1,7 +1,7 @@
 
 <template>
   <v-footer height="auto">
-    <v-card width="100%" flat tile class="primary lighten-1 white--text text-xs-center">
+    <v-card width="100%" flat tile class="blue-grey lighten-1 white--text text-xs-center">
       <v-card-text>
         <v-btn v-for="icon in icons" :key="icon" class="md-3 white--text" icon>
           <v-icon size="24px">{{ icon }}</v-icon>

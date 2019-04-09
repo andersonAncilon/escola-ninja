@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-layout v-if="$router.currentRoute.path != '/'">
+    <v-layout v-if="$router.currentRoute.path != '/'" class="hidden-lg-and-up">
       <v-btn outline @click="$router.back()">
         <v-icon>arrow_back</v-icon>
       </v-btn>

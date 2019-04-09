@@ -1,5 +1,9 @@
 <template>
   <MyCenteredContainer>
+    <MyModal :handleModal="modalStatus" 
+              @closeModal="modalStatus = false"
+              :modalContentText="modalText"
+              :modalCloseButtonText="modalButtonText" />
     <MyCard>
       <template v-slot:card-content>
         <v-form lazy-validation ref="form">
@@ -43,6 +47,7 @@
             placeholder="Repita sua senha"
           ></v-text-field>
           <v-btn dark class="mb-5" color="teal" @click="validate()">Cadastrar</v-btn>
+          <v-btn outline dark class="mb-5" color="error" @click="$refs.form.reset()">Limpar dados</v-btn>
         </v-form>
       </template>
     </MyCard>
@@ -51,9 +56,10 @@
 </template>
 
 <script>
-import MyCard from "../components/base/MyCard";
+import MyCard from '../components/base/MyCard';
 import MyCenteredContainer from '../components/base/MyCenteredContainer';
 import MySnackBar from '../components/base/MySnackBar';
+import MyModal from '../components/base/MyModal';
 
 import rules from '../utils/Rules';
 import { Post } from '../utils/Api';
@@ -62,7 +68,8 @@ export default {
   components: {
     MyCard,
     MyCenteredContainer,
-    MySnackBar
+    MySnackBar,
+    MyModal
   },
   data() {
     return {
@@ -72,19 +79,29 @@ export default {
         password: '',
         flag: 'student'
       },
+      modalText: 'Cadastro realizado com sucesso, clique no botão abaixo para continuarmos',
+      modalButtonText: 'Confirmar',
       rules: rules,
       snackbarStatus: false,
+      modalStatus: false
     };
   },
   methods: {
     async register() {
+      var status = 0;
       await Post('auth/register', this.user).then((res) => {
-        console.log(res.data);
+        status = res.status;
       })
+
+      if (status == 200) {
+        this.snackbarStatus = false;
+        this.modalStatus = true
+      }
+      else
+        alert('Ops, algo deu errado') 
     },
     validate() {
       if (this.$refs.form.validate()) {
-        this.snackbarStatus = false;
         this.register();
       }
       else
@@ -93,9 +110,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.login-btn-size {
-  width: 100% !important;
-}
-</style>
