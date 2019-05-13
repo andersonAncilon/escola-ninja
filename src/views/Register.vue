@@ -1,9 +1,11 @@
 <template>
   <MyCenteredContainer>
-    <MyModal :handleModal="modalStatus" 
-              @closeModal="modalStatus = false"
-              :modalContentText="modalText"
-              :modalCloseButtonText="modalButtonText" />
+    <MyModal
+      :handleModal="modalStatus"
+      @closeModal="modalStatus = false"
+      :modalContentText="modalText"
+      :modalCloseButtonText="modalButtonText"
+    />
     <MyCard>
       <template v-slot:card-content>
         <v-form lazy-validation ref="form">
@@ -56,13 +58,13 @@
 </template>
 
 <script>
-import MyCard from '../components/base/MyCard';
-import MyCenteredContainer from '../components/base/MyCenteredContainer';
-import MySnackBar from '../components/base/MySnackBar';
-import MyModal from '../components/base/MyModal';
+import MyCard from "../components/base/MyCard";
+import MyCenteredContainer from "../components/base/MyCenteredContainer";
+import MySnackBar from "../components/base/MySnackBar";
+import MyModal from "../components/base/MyModal";
 
-import rules from '../utils/Rules';
-import { Post } from '../utils/Api';
+import rules from "../utils/Rules";
+import { Post } from "../utils/Api";
 
 export default {
   components: {
@@ -74,13 +76,14 @@ export default {
   data() {
     return {
       user: {
-        name: '',
-        email: '',
-        password: '',
-        flag: 'student'
+        name: "",
+        email: "",
+        password: "",
+        flag: "student"
       },
-      modalText: 'Cadastro realizado com sucesso, clique no botão abaixo para continuarmos',
-      modalButtonText: 'Confirmar',
+      modalText:
+        "Cadastro realizado com sucesso, clique no botão abaixo para continuarmos",
+      modalButtonText: "Confirmar",
       rules: rules,
       snackbarStatus: false,
       modalStatus: false
@@ -89,24 +92,20 @@ export default {
   methods: {
     async register() {
       var status = 0;
-      await Post('auth/register', this.user).then((res) => {
+      await Post("auth/register", this.user).then(res => {
         status = res.status;
-      })
+      });
 
       if (status == 200) {
         this.snackbarStatus = false;
-        this.modalStatus = true
-      }
-      else
-        alert('Ops, algo deu errado') 
+        this.modalStatus = true;
+      } else alert("Ops, algo deu errado");
     },
     validate() {
       if (this.$refs.form.validate()) {
         this.register();
-      }
-      else
-        this.snackbarStatus = true
-    },
+      } else this.snackbarStatus = true;
+    }
   }
 };
 </script>
