@@ -2,21 +2,23 @@
   <div class="escola-ninja-container">
     <v-app>
       <TheNavBar/>
-      <router-view></router-view>
+      <transition name="list" appear="list-enter-active" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </v-app>
     <TheFooter/>
   </div>
 </template>
 
 <script>
-import TheNavBar from './components/container/TheNavBar';
-import TheFooter from './components/container/TheFooter';
+import TheNavBar from "./components/container/TheNavBar";
+import TheFooter from "./components/container/TheFooter";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TheNavBar,
-    TheFooter,
+    TheFooter
   },
   data() {
     return {};
@@ -25,7 +27,8 @@ export default {
 </script>
 
 <style>
-html, body {
+html,
+body {
   padding: 0;
   height: 100vh;
   width: 100%;
@@ -35,5 +38,15 @@ html, body {
   padding: 0;
   height: 100vh;
   width: 100%;
+}
+
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s;
 }
 </style>

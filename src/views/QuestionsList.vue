@@ -1,8 +1,16 @@
 <template>
   <v-container text-xs-center mt-5>
-    <h2>Selecione uma área de conhecimento</h2>
+    <v-layout v-if="$router.currentRoute.path != '/'" class="hidden-lg-and-up">
+      <v-btn outline @click="$router.back()">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
+    </v-layout>
+    <h2 v-if="$router.currentRoute.path === '/questoes'">Selecione uma área de conhecimento</h2>
+    <h2 v-else>Selecione um conteúdo</h2>
     <v-layout row wrap justify-center>
-      <TheAxis/>
+      <transition name="list" appear="list-enter-active" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </v-layout>
   </v-container>
 </template>
