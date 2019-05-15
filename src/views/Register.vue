@@ -2,7 +2,7 @@
   <MyCenteredContainer>
     <MyModal
       :handleModal="modalStatus"
-      @closeModal="modalStatus = false"
+      @closeModal="$router.push('/questoes')"
       :modalContentText="modalText"
       :modalCloseButtonText="modalButtonText"
     />
@@ -48,7 +48,7 @@
             ref="confirmPassword"
             placeholder="Repita sua senha"
           ></v-text-field>
-          <v-btn dark class="mb-5" color="teal" @click="validate()">Cadastrar</v-btn>
+          <v-btn dark class="mb-5" color="teal" @click="validate()" :loading="loading">Cadastrar</v-btn>
           <v-btn outline dark class="mb-5" color="error" @click="$refs.form.reset()">Limpar dados</v-btn>
         </v-form>
       </template>
@@ -86,12 +86,15 @@ export default {
       modalButtonText: "Confirmar",
       rules: rules,
       snackbarStatus: false,
-      modalStatus: false
+      modalStatus: false,
+      loading: false
     };
   },
   methods: {
     async register() {
       var status = 0;
+      this.loading = true;
+
       await Post("auth/register", this.user).then(res => {
         status = res.status;
       });
@@ -99,7 +102,15 @@ export default {
       if (status == 200) {
         this.snackbarStatus = false;
         this.modalStatus = true;
-      } else alert("Ops, algo deu errado");
+        this.loading = false;
+
+        setTimeout(() => {
+          this.$router.push("/questoes");
+        }, 3000);
+      } else {
+        alert("Ops, algo deu errado");
+        this.loading = false;
+      }
     },
     validate() {
       if (this.$refs.form.validate()) {

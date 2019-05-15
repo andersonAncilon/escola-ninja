@@ -29,21 +29,44 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+    <h2>{{ user }}</h2>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
+const logged = [
+  { title: "Home", icon: "home", path: "/" },
+  { title: "Questoes", icon: "dashboard", path: "/questoes" },
+  { title: "Sair", icon: "exit_to_app", path: "" }
+];
+
+const unlogged = [
+  { title: "Home", icon: "home", path: "/" },
+  { title: "Questoes", icon: "dashboard", path: "/questoes" },
+  { title: "Entrar", icon: "question_answer", path: "/login" },
+  { title: "Cadastrar-se", icon: "question_answer", path: "/cadastro" }
+];
+
 export default {
   data() {
     return {
       drawer: null,
-      items: [
-        { title: "Home", icon: "home", path: "/" },
-        { title: "Questoes", icon: "dashboard", path: "/questoes" },
-        { title: "Entrar", icon: "question_answer", path: "/login" },
-        { title: "Cadastrar-se", icon: "question_answer", path: "/cadastro" }
-      ]
+      items: unlogged
     };
+  },
+  computed: {
+    ...mapGetters(["user"])
+  },
+  watch: {
+    user: function(val) {
+      if (val) {
+        this.items = logged;
+      } else {
+        this.items = unlogged;
+      }
+    }
   }
 };
 </script>

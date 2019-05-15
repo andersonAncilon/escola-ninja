@@ -2,7 +2,7 @@
   <div class="escola-ninja-container">
     <v-app>
       <TheNavBar/>
-      <transition name="list" appear="list-enter-active" mode="out-in">
+      <transition name="list" :appear="true" mode="out-in">
         <router-view></router-view>
       </transition>
     </v-app>

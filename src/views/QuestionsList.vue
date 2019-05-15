@@ -8,7 +8,7 @@
     <h2 v-if="$router.currentRoute.path === '/questoes'">Selecione uma área de conhecimento</h2>
     <h2 v-else>Selecione um conteúdo</h2>
     <v-layout row wrap justify-center>
-      <transition name="list" appear="list-enter-active" mode="out-in">
+      <transition name="list" :appear="true" mode="out-in">
         <router-view></router-view>
       </transition>
     </v-layout>
