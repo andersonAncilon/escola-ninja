@@ -12,13 +12,13 @@
           flat
           v-for="item in items"
           :key="item.title"
-          @click="$router.push(item.path)"
+          @click="check(item.title, item.path)"
         >{{ item.title }}</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-navigation-drawer v-model="drawer" temporary absolute width="200" id="drawer">
       <v-list dense>
-        <v-list-tile v-for="item in items" :key="item.title" @click="$router.push(item.path)">
+        <v-list-tile v-for="item in items" :key="item.title" @click="check(item.title, item.path)">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -29,15 +29,13 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <h2>{{ user }}</h2>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 const logged = [
-  { title: "Home", icon: "home", path: "/" },
   { title: "Questoes", icon: "dashboard", path: "/questoes" },
   { title: "Sair", icon: "exit_to_app", path: "" }
 ];
@@ -58,6 +56,17 @@ export default {
   },
   computed: {
     ...mapGetters(["user"])
+  },
+  methods: {
+    ...mapActions(["logof"]),
+    check(title, path) {
+      if (title === "Sair") {
+        console.warn(title);
+        this.logof();
+      } else {
+        this.$router.push(path);
+      }
+    }
   },
   watch: {
     user: function(val) {

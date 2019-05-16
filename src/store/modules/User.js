@@ -1,5 +1,7 @@
 import { Post } from '../../utils/Api';
 
+import router from '../../router';
+
 export const User = {
 	state: {
 		user: null,
@@ -14,19 +16,30 @@ export const User = {
 
 		auth: async (context, payload) => {
 			context.commit('changeLoading');
-			await Post('auth/authenticate', payload).then((res) => {
-				context.commit('saveUser', res.data.user);
+			try {
+				await Post('auth/authenticate', payload).then((res) => {
+					context.commit('saveUser', res.data.user);
+					context.commit('changeLoading');
+					router.push('/questoes');
+				});
+			} catch (err) {
+				alert('Usuário ou senha inválidos');
 				context.commit('changeLoading');
-			});
+			}
+		},
+
+		logof: (context) => {
+			context.commit('logout');
+			alert('Entrei');
 		}
 	},
 	mutations: {
 		saveUser: (state, payload) => {
 			state.user = payload;
-			alert(state.user.email);
 		},
 		changeLoading: (state) => {
 			state.loading = !state.loading;
-		}
+		},
+		logout: (state) => (state.user = null)
 	}
 };

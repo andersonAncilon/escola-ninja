@@ -61,8 +61,7 @@ export default {
       let pwd = this.password;
 
       if (lg !== "" && pwd !== "") {
-        this.auth({ email: lg, password: pwd });
-        //this.loading = false;
+        let status = this.auth({ email: lg, password: pwd });
       } else {
         alert("Favor, insira seu email e senha");
       }

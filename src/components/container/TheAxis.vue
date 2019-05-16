@@ -1,15 +1,19 @@
 <template>
-  <div class="mt-5">
-    <v-card v-for="ax in axis" class="mb-3" :key="ax.id">
-      <v-card-title primary-title>
-        <div>
-          <div class="headline">{{ax.id}}</div>
-          <span>Varias bla bla bla bla bla bla</span>
-          <router-link :to="{ path: `/questoes/${ax.id}` }">Entrar</router-link>
-        </div>
-      </v-card-title>
-    </v-card>
-  </div>
+  <v-container fluid grid-list-sm>
+    <v-layout row wrap>
+      <v-flex v-for="ax in axis" :key="ax.id" md6>
+        <v-card>
+          <v-card-title primary-title>
+            <v-card-text>
+              <span class="headline">{{ax.id}}</span>
+              <p>Varias bla bla bla bla bla bla</p>
+              <router-link :to="{ path: `/questoes/${ax.id}` }">Entrar</router-link>
+            </v-card-text>
+          </v-card-title>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
