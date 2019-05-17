@@ -1,11 +1,5 @@
 <template>
   <MyCenteredContainer>
-    <MyModal
-      :handleModal="modalStatus"
-      @closeModal="$router.push('/questoes')"
-      :modalContentText="modalText"
-      :modalCloseButtonText="modalButtonText"
-    />
     <MyCard>
       <template v-slot:card-content>
         <v-form lazy-validation ref="form">
@@ -61,17 +55,16 @@
 import MyCard from "../components/base/MyCard";
 import MyCenteredContainer from "../components/base/MyCenteredContainer";
 import MySnackBar from "../components/base/MySnackBar";
-import MyModal from "../components/base/MyModal";
 
 import rules from "../utils/Rules";
 import { Post } from "../utils/Api";
+import { mapActions } from 'vuex';
 
 export default {
   components: {
     MyCard,
     MyCenteredContainer,
     MySnackBar,
-    MyModal
   },
   data() {
     return {
@@ -81,16 +74,13 @@ export default {
         password: "",
         flag: "student"
       },
-      modalText:
-        "Cadastro realizado com sucesso, clique no botão abaixo para continuarmos",
-      modalButtonText: "Confirmar",
       rules: rules,
       snackbarStatus: false,
-      modalStatus: false,
       loading: false
     };
   },
   methods: {
+    ...mapActions(['auth']),
     async register() {
       var status = 0;
       this.loading = true;
@@ -101,12 +91,12 @@ export default {
 
       if (status == 200) {
         this.snackbarStatus = false;
-        this.modalStatus = true;
+
         this.loading = false;
 
-        setTimeout(() => {
-          this.$router.push("/questoes");
-        }, 3000);
+        this.auth({ email: this.user.email, password: this.user.password });
+
+
       } else {
         alert("Ops, algo deu errado");
         this.loading = false;

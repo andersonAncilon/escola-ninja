@@ -1,10 +1,5 @@
 <template>
   <v-container text-xs-center mt-5>
-    <v-layout v-if="$router.currentRoute.path != '/'" class="hidden-lg-and-up">
-      <v-btn outline @click="$router.back()">
-        <v-icon>arrow_back</v-icon>
-      </v-btn>
-    </v-layout>
     <h2 v-if="user" class="display-2 font-weight-bold">Bem vindo {{ user.name }}</h2>
     <h2 v-if="$router.currentRoute.path === '/questoes'" class="display-1 mt-5">
       Selecione uma
@@ -32,6 +27,7 @@ export default {
   },
   computed: {
     ...mapGetters(["user"])
-  }
+  },
+
 };
 </script>

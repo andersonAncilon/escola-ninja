@@ -6,7 +6,7 @@
           <div>
             <div class="headline">{{ct}}</div>
             <span></span>
-            <router-link :to="{ path: `/questoes/${2}` }">Entrar</router-link>
+            <router-link :to="{ path: `/questoes/${index}` }">Entrar</router-link>
           </div>
         </v-card-title>
       </v-card>

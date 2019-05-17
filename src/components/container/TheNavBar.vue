@@ -10,7 +10,7 @@
       <v-toolbar-items class="hidden-md-and-down">
         <v-btn
           flat
-          v-for="item in items"
+          v-for="item in userOptions"
           :key="item.title"
           @click="check(item.title, item.path)"
         >{{ item.title }}</v-btn>
@@ -18,7 +18,11 @@
     </v-toolbar>
     <v-navigation-drawer v-model="drawer" temporary absolute width="200" id="drawer">
       <v-list dense>
-        <v-list-tile v-for="item in items" :key="item.title" @click="check(item.title, item.path)">
+        <v-list-tile
+          v-for="item in userOptions"
+          :key="item.title"
+          @click="check(item.title, item.path)"
+        >
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -35,47 +39,25 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-const logged = [
-  { title: "Questoes", icon: "dashboard", path: "/questoes" },
-  { title: "Sair", icon: "exit_to_app", path: "" }
-];
-
-const unlogged = [
-  { title: "Home", icon: "home", path: "/" },
-  { title: "Questoes", icon: "dashboard", path: "/questoes" },
-  { title: "Entrar", icon: "question_answer", path: "/login" },
-  { title: "Cadastrar-se", icon: "question_answer", path: "/cadastro" }
-];
-
 export default {
   data() {
     return {
       drawer: null,
-      items: unlogged
+      items: this.userOptions
     };
   },
   computed: {
-    ...mapGetters(["user"])
+    ...mapGetters(["user", "userOptions"])
   },
   methods: {
     ...mapActions(["logof"]),
     check(title, path) {
       if (title === "Sair") {
-        console.warn(title);
         this.logof();
       } else {
         this.$router.push(path);
       }
     }
   },
-  watch: {
-    user: function(val) {
-      if (val) {
-        this.items = logged;
-      } else {
-        this.items = unlogged;
-      }
-    }
-  }
 };
 </script>
