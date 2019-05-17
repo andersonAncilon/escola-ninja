@@ -2,7 +2,7 @@
   <MyCenteredContainer>
     <MyCard>
       <template v-slot:card-content>
-        <v-form>
+        <v-form style="width: 80%">
           <h2 class="display-1">Faça seu login</h2>
           <v-text-field
             class="login-btn-size mt-5"

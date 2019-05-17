@@ -8,6 +8,7 @@ import Register from '../views/Register';
 import QuestionsList from '../views/QuestionsList';
 import TheAxis from '../components/container/TheAxis';
 import TheAxisContent from '../components/container/TheAxisContent';
+import Painel from '../views/Painel.vue';
 
 Vue.use(VueRouter);
 
@@ -29,6 +30,7 @@ export default new VueRouter({
 				},
 				{ path: ':conteudo', component: TheAxisContent }
 			]
-		}
+		},
+		{ path: '/painel', component: Painel }
 	]
 });

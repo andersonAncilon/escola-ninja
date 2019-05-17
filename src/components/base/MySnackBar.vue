@@ -10,34 +10,34 @@
     :vertical="mode === 'vertical'"
   >
     Preencha os campos corretamente!
-    <v-btn color="pink" flat @click="changeSnackbarStatus()">
+    <v-btn color="pink" flat @click="$emit('closeSnack')">
       <v-icon>close</v-icon>
     </v-btn>
   </v-snackbar>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations } from "vuex";
 export default {
   props: {
     showSnackBarProp: null
   },
   data() {
     return {
-      y: 'top',
+      y: "top",
       x: null,
-      mode: '',
+      mode: "",
       timeout: 6000,
       showSnackBarData: null
-    }
+    };
   },
   methods: {
-    ...mapMutations(['changeSnackbarStatus'])
+    ...mapMutations(["changeSnackbarStatus"])
   },
   watch: {
-    showSnackBarProp: function (val) {
+    showSnackBarProp: function(val) {
       this.showSnackBarData = val;
-    },
+    }
   }
-}
+};
 </script>

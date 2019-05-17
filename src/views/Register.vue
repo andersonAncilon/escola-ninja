@@ -2,7 +2,7 @@
   <MyCenteredContainer>
     <MyCard>
       <template v-slot:card-content>
-        <v-form lazy-validation ref="form">
+        <v-form lazy-validation ref="form" style="width: 80%">
           <h2 class="display-1">Faça seu cadastro</h2>
           <v-text-field
             class="login-btn-size mt-5"
@@ -58,13 +58,13 @@ import MySnackBar from "../components/base/MySnackBar";
 
 import rules from "../utils/Rules";
 import { Post } from "../utils/Api";
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
   components: {
     MyCard,
     MyCenteredContainer,
-    MySnackBar,
+    MySnackBar
   },
   data() {
     return {
@@ -80,7 +80,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['auth']),
+    ...mapActions(["auth"]),
     async register() {
       var status = 0;
       this.loading = true;
@@ -95,8 +95,6 @@ export default {
         this.loading = false;
 
         this.auth({ email: this.user.email, password: this.user.password });
-
-
       } else {
         alert("Ops, algo deu errado");
         this.loading = false;

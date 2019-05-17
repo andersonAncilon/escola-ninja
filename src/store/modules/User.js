@@ -7,12 +7,12 @@ export const User = {
 	state: {
 		user: JSON.parse(window.sessionStorage.getItem('user')),
 		loading: false,
-		userOptions: window.sessionStorage.getItem('user') ? logged : unlogged,
+		userOptions: window.sessionStorage.getItem('user') ? logged : unlogged
 	},
 	getters: {
-		user: state => state.user,
-		loading: state => state.loading,
-		userOptions: state => state.userOptions,
+		user: (state) => state.user,
+		loading: (state) => state.loading,
+		userOptions: (state) => state.userOptions
 	},
 	actions: {
 		register: async (context, payload) => (context.user = null),
@@ -20,10 +20,10 @@ export const User = {
 		auth: async (context, payload) => {
 			context.commit('changeLoading');
 			try {
-				await Post('auth/authenticate', payload).then(res => {
+				await Post('auth/authenticate', payload).then((res) => {
 					context.commit('saveUser', res.data.user);
 					context.commit('changeLoading');
-					router.push('/questoes');
+					res.data.user.flag === 'student' ? router.push('/questoes') : router.push('/painel');
 				});
 			} catch (err) {
 				alert('Usuário ou senha inválidos');
@@ -31,11 +31,11 @@ export const User = {
 			}
 		},
 
-		logof: context => {
+		logof: (context) => {
 			context.commit('logout');
 			window.sessionStorage.clear();
 			router.push('/');
-		},
+		}
 	},
 	mutations: {
 		saveUser: (state, payload) => {
@@ -43,12 +43,12 @@ export const User = {
 			state.userOptions = logged;
 			window.sessionStorage.setItem('user', JSON.stringify(state.user));
 		},
-		changeLoading: state => {
+		changeLoading: (state) => {
 			state.loading = !state.loading;
 		},
-		logout: state => {
+		logout: (state) => {
 			state.user = null;
 			state.userOptions = unlogged;
-		},
-	},
+		}
+	}
 };

@@ -59,5 +59,8 @@ export default {
       }
     }
   },
+  created() {
+    console.warn(this.user);
+  }
 };
 </script>
