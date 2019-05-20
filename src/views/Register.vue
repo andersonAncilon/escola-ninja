@@ -42,8 +42,8 @@
             ref="confirmPassword"
             placeholder="Repita sua senha"
           ></v-text-field>
-          <v-btn dark class="mb-5" color="teal" @click="validate()" :loading="loading">Cadastrar</v-btn>
-          <v-btn outline dark class="mb-5" color="error" @click="$refs.form.reset()">Limpar dados</v-btn>
+          <v-btn dark color="teal" @click="validate()" :loading="loading">Cadastrar</v-btn>
+          <v-btn outline dark color="error" @click="$refs.form.reset()">Limpar dados</v-btn>
         </v-form>
       </template>
     </MyCard>

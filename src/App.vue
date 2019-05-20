@@ -2,11 +2,11 @@
   <div class="escola-ninja-container">
     <v-app>
       <TheNavBar/>
-      <v-layout v-if="$router.currentRoute.path != '/'" class="hidden-lg-and-up">
+      <div v-if="$router.currentRoute.path != '/'" class="hidden-lg-and-up">
         <v-btn outline @click="$router.back()">
           <v-icon>arrow_back</v-icon>
         </v-btn>
-      </v-layout>
+      </div>
       <transition name="list" :appear="true" mode="out-in">
         <router-view></router-view>
       </transition>

@@ -9,6 +9,8 @@ import QuestionsList from '../views/QuestionsList';
 import TheAxis from '../components/container/TheAxis';
 import TheAxisContent from '../components/container/TheAxisContent';
 import Painel from '../views/Painel.vue';
+import MyPanel from '../components/base/MyPanel.vue';
+import MyQuestionCreate from '../components/base/MyQuestionCreate';
 
 Vue.use(VueRouter);
 
@@ -26,11 +28,15 @@ export default new VueRouter({
 				{
 					path: '',
 					name: 'eixo',
-					component: TheAxis
+					component: TheAxis,
 				},
-				{ path: ':conteudo', component: TheAxisContent }
-			]
+				{ path: ':conteudo', component: TheAxisContent },
+			],
 		},
-		{ path: '/painel', component: Painel }
-	]
+		{
+			path: '/painel',
+			component: Painel,
+			children: [{ path: '', component: MyPanel }, { path: 'criarQuestao', component: MyQuestionCreate }],
+		},
+	],
 });

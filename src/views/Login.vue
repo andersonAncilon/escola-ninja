@@ -22,6 +22,7 @@
             type="password"
             placeholder="Digite sua senha"
             v-model="password"
+            @keyup.enter="authenticate()"
           ></v-text-field>
           <v-layout column>
             <v-btn dark class color="teal" @click="authenticate()" :loading="loading">Entrar</v-btn>
