@@ -22,3 +22,10 @@
     </v-layout>
   </v-container>
 </template>
+
+<style>
+.v-card {
+  cursor: pointer;
+  transition: 0.3s;
+}
+</style>

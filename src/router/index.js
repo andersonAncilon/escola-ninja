@@ -5,10 +5,11 @@ import Home from '../views/Home';
 import NotFound from '../views/NotFound';
 import Login from '../views/Login';
 import Register from '../views/Register';
-import QuestionsList from '../views/QuestionsList';
+import QuestionFilter from '../views/QuestionFilter';
 import TheAxis from '../components/container/TheAxis';
 import TheAxisContent from '../components/container/TheAxisContent';
 import Painel from '../views/Painel.vue';
+import QuestionList from '../views/QuestionList.vue';
 import MyPanel from '../components/base/MyPanel.vue';
 import MyQuestionCreate from '../components/base/MyQuestionCreate';
 
@@ -23,16 +24,20 @@ export default new VueRouter({
 		{ path: '/cadastro', component: Register },
 		{
 			path: '/questoes',
-			component: QuestionsList,
+			component: QuestionFilter,
 			children: [
 				{
 					path: '',
 					name: 'eixo',
 					component: TheAxis,
 				},
-				{ path: ':conteudo', component: TheAxisContent },
+				{
+					path: 'eixo/:conteudo',
+					component: TheAxisContent,
+				},
 			],
 		},
+		{ path: '/listagem/:conteudo', name: 'listagem', component: QuestionList },
 		{
 			path: '/painel',
 			component: Painel,

@@ -4,7 +4,9 @@
       <h2 class="display-2 hidden-md-and-down">Painel de criação</h2>
       <h2 class="display-1 hidden-lg-and-up">Painel de criação</h2>
     </v-layout>
-    <router-view></router-view>
+    <transition name="list" :appear="true" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -31,8 +33,4 @@ export default {
 </script>
 
 <style scoped>
-.v-card {
-  cursor: pointer;
-  transition: 0.3s;
-}
 </style>

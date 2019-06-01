@@ -2,7 +2,6 @@
   <v-container fluid>
     <v-layout row justify-center>
       <v-flex md8>
-        <h2>Criação</h2>
         <MyStepper/>
       </v-flex>
     </v-layout>

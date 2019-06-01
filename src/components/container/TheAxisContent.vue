@@ -4,9 +4,9 @@
       <v-card class="mb-3" :key="index">
         <v-card-title primary-title>
           <div>
-            <div class="headline">{{ct}}</div>
+            <div class="headline">{{ct.toLowerCase()}}</div>
             <span></span>
-            <router-link :to="{ path: `/questoes/${index}` }">Entrar</router-link>
+            <router-link :to="{ path: `/listagem/${ct.toLowerCase()}` }">Entrar</router-link>
           </div>
         </v-card-title>
       </v-card>

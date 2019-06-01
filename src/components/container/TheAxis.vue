@@ -7,7 +7,7 @@
             <v-card-text>
               <span class="headline">{{ax.id}}</span>
               <p>Varias bla bla bla bla bla bla</p>
-              <router-link :to="{ path: `/questoes/${ax.id}` }">Entrar</router-link>
+              <router-link :to="{ path: `questoes/eixo/${ax.id}` }">Entrar</router-link>
             </v-card-text>
           </v-card-title>
         </v-card>
